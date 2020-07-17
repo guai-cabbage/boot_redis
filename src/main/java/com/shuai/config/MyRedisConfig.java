@@ -19,7 +19,6 @@ public class MyRedisConfig {
         template.setConnectionFactory(redisConnectionFactory);
         RedisSerializer<Employee> serializer= new Jackson2JsonRedisSerializer<Employee>(Employee.class);
         template.setDefaultSerializer(serializer);
-        System.out.println("my redis");
         return template;
     }
 

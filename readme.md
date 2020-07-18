@@ -1,0 +1,1 @@
+redis缓存与springboot的整合以及自定义序列化方式

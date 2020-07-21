@@ -4,6 +4,7 @@ import com.shuai.bean.Employee;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +16,33 @@ public class RabbitMqTest {
     @Autowired
     RabbitTemplate rabbitTemplate;
     Employee employee=new Employee();
+    //系统管理组件
+    @Autowired
+    AmqpAdmin amqpAdmin;
+
+    /**
+     * 使用amqp管理mq
+     */
+    @Test
+    public void amqpAdminMethodTest(){
+        //创建转换器
+        //amqpAdmin.declareExchange(new DirectExchange("amqpAdmin.exchange"));
+        //System.out.println("exchange创建完成");
+
+        //创建队列
+        //amqpAdmin.declareQueue(new Queue("amqpadmin.queue"));
+
+        //创建队列与转换器之间的绑定规则
+//        amqpAdmin.declareBinding(new Binding("amqpadmin.queue", Binding.DestinationType.QUEUE,
+//                "amqpAdmin.exchange","amqp.test",null));
+        //移除绑定
+//        amqpAdmin.removeBinding(new Binding("amqpadmin.queue", Binding.DestinationType.QUEUE,
+//                "amqpAdmin.exchange","amqp.test",null));
+        //移除队列
+//        amqpAdmin.deleteQueue("amqpadmin.queue");
+        //移除转换器
+//        amqpAdmin.deleteExchange("amqpAdmin.exchange");
+    }
     @Before
     public void init(){
 
@@ -61,7 +89,7 @@ public class RabbitMqTest {
      */
     @Test
     public void sendMsg(){
-        rabbitTemplate.convertAndSend("exchange.fanout","",employee);
+        rabbitTemplate.convertAndSend("exchange.fanout","","shuai");
     }
 
 }
